@@ -65,20 +65,22 @@ By considering the long pauses as 0s and the short pauses as 1s, I demodulated m
 - 10000010 11101011 10110011 11011010 1 001 0 110
 - 10000010 11101011 10110011 11011010 1 000 0 111
 - 10000010 11101011 10110011 11011010 1 110 0 001
+
 You may notice, that's all very similar. Except for the last byte (8-bits). For convenience I have split this up. The last three bits appear to be counting in binary. Neat, that's easy. The bit before it appears to be always 0, sure. After some puzzling I realised that the three bits before that are always the inverse of the three counting bits. 
 
 Hold on. Perhaps long pauses represent 1s and short pauses represent 0s. Because, then all bits should be inverted. Then the three inverted bits are the counting bits and what I previously thought were the counting bits are a checksum. That's probably it.
 
 Let's do all buttons now:
 
-| On       | `01111101 00010100 01111101 00010100 [BYTE]` |
+| Button   | Message |
 |----------|----------------------------------------------|
+| On       | `01111101 00010100 01111101 00010100 [BYTE]` |
 | Off      | `01111101 00010100 01111010 00010011 [BYTE]` |
 | Brighter | `01111101 00010100 01100010 00001011 [BYTE]` |
 | Dimmer   | `01111101 00010100 01100001 00001000 [BYTE]` |
 | Left     | `01111101 00010100 01100000 00001001 [BYTE]` |
 | Right    | `01111101 00010100 01011111 00110110 [BYTE]` |
-| Button 1 | `01111101 00010100 01001111 00100110 [BYTE]` |
-| Button 2 | `01111101 00010100 01001110 00100111 [BYTE]` |
-| Button 3 | `01111101 00010100 01001101 00100100 [BYTE]` |
-| Button 4 | `01111101 00010100 01001100 00100101 [BYTE]` |
+| 1        | `01111101 00010100 01001111 00100110 [BYTE]` |
+| 2        | `01111101 00010100 01001110 00100111 [BYTE]` |
+| 3        | `01111101 00010100 01001101 00100100 [BYTE]` |
+| 4        | `01111101 00010100 01001100 00100101 [BYTE]` |
