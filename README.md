@@ -10,7 +10,25 @@ My goal is to integrate the control of the lights in my Home Assistant user inte
 
 # Protocol
 
-TBA
+The 433Mhz protocol sends:
+- 9 ms preamble pulse, followed by 4.6ms of silence
+- 5 bytes using Pulse Position Modulation with fixed pulse width
+    - of which 4 bytes corresponding to the table below
+    - last byte, in binary: `0 [3 counting bits] 1 [inverse of counting bits]`
+
+
+| Button   | Message (in hex)     |
+|----------|----------------------|
+| On       | `7D 14 7D 14 [BYTE]` |
+| Off      | `7D 14 7A 13 [BYTE]` |
+| Brighter | `7D 14 62 0B [BYTE]` |
+| Dimmer   | `7D 14 61 08 [BYTE]` |
+| Left     | `7D 14 60 09 [BYTE]` |
+| Right    | `7D 14 5F 36 [BYTE]` |
+| 1        | `7D 14 4F 26 [BYTE]` |
+| 2        | `7D 14 4E 27 [BYTE]` |
+| 3        | `7D 14 4D 24 [BYTE]` |
+| 4        | `7D 14 4C 25 [BYTE]` |
 
 # ESPHome
 
@@ -72,7 +90,7 @@ Hold on. Perhaps long pauses represent 1s and short pauses represent 0s. Because
 
 Let's do all buttons now:
 
-| Button   | Message |
+| Button   | Message                                      |
 |----------|----------------------------------------------|
 | On       | `01111101 00010100 01111101 00010100 [BYTE]` |
 | Off      | `01111101 00010100 01111010 00010011 [BYTE]` |
