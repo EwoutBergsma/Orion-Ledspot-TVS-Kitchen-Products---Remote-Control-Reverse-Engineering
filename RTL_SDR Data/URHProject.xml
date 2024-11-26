@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<UniversalRadioHackerProject broadcast_address_hex="ffff" collapse_project_tabs="0" description="" modulation_was_edited="0">
+  <modulators>
+    <modulator bits_per_symbol="1" carrier_amplitude="1.0" carrier_freq_hz="40000.0" carrier_phase_deg="0.0" gauss_bt="0.5" gauss_filter_width="1.0" index="0" modulation_type="ASK" name="Modulator" parameters="0.0,100.0" sample_rate="None" samples_per_symbol="100"/>
+  </modulators>
+  <device_conf>
+    <adaptive_noise>False</adaptive_noise>
+    <apply_dc_correction>True</apply_dc_correction>
+    <automatic_center>False</automatic_center>
+    <bandwidth>1000000.0</bandwidth>
+    <bias_tee_enabled>False</bias_tee_enabled>
+    <bits_per_symbol>1</bits_per_symbol>
+    <center>0.02</center>
+    <center_spacing>0.1</center_spacing>
+    <decoding_name>Non Return To Zero (NRZ)</decoding_name>
+    <freq_correction>1</freq_correction>
+    <frequency>433920000.0</frequency>
+    <gain>20</gain>
+    <modulation_type>ASK</modulation_type>
+    <name>RTL-SDR</name>
+    <noise>0.1810193359837562</noise>
+    <num_sending_repeats>0</num_sending_repeats>
+    <rx_antenna_index>-1</rx_antenna_index>
+    <rx_baseband_gain>16</rx_baseband_gain>
+    <rx_gain>49</rx_gain>
+    <rx_if_gain>20</rx_if_gain>
+    <sample_rate>1000000.0</sample_rate>
+    <samples_per_symbol>100</samples_per_symbol>
+    <tolerance>5</tolerance>
+  </device_conf>
+  <simulator_rx_conf/>
+  <simulator_tx_conf/>
+  <group id="0" name="New Group"/>
+  <protocol>
+    <decodings>
+      <decoding>'Non Return To Zero (NRZ)', </decoding>
+      <decoding>'Non Return To Zero + Invert', 'Invert', </decoding>
+      <decoding>'Manchester I', 'Edge Trigger', </decoding>
+      <decoding>'Manchester II', 'Edge Trigger', 'Invert', </decoding>
+      <decoding>'Differential Manchester', 'Edge Trigger', 'Differential Encoding', </decoding>
+    </decodings>
+    <participants>
+      <participant address_hex="" color_index="0" id="e217b51d-db70-4f25-a686-7d363a7b6b9c" name="Alice" relative_rssi="0" shortname="A" simulate="0"/>
+      <participant address_hex="" color_index="1" id="574b2bf5-f77d-43fc-a918-d4756bc77e82" name="Bob" relative_rssi="1" shortname="B" simulate="0"/>
+    </participants>
+    <messages/>
+    <message_types>
+      <message_type assigned_by_logic_analyzer="0" assigned_by_ruleset="1" id="a99dbfe4-7e6d-4bc3-abc6-36a68a778098" name="Default">
+        <ruleset mode="0"/>
+      </message_type>
+    </message_types>
+  </protocol>
+  <simulator_config>
+    <items/>
+  </simulator_config>
+</UniversalRadioHackerProject>
