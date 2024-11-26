@@ -14,7 +14,7 @@ The 433Mhz protocol sends:
 - 9 ms preamble pulse, followed by 4.6ms of silence
 - 5 bytes using Pulse Position Modulation with fixed pulse width
     - of which 4 bytes corresponding to the table below
-    - last byte, in binary: `0 [3 counting bits] 1 [inverse of counting bits]`
+    - last byte, in binary: `0 <3 counting bits> 1 <inverse of counting bits>`
 
 
 | Button   | Message (in hex)     |
