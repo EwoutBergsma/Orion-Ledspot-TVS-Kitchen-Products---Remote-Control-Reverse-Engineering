@@ -15,7 +15,6 @@ void setup() {
 }
 
 void loop() {
-
   // Send the "on" message with ending bytes
   send_message(rx_pin, on_message, sizeof(on_message), ending_bytes, sizeof(ending_bytes), curent_end_byte);
   delay(1000);  // Wait 1 second before the next message
