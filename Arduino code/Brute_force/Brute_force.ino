@@ -1,6 +1,6 @@
 int rx_pin = 13;  // Pin used for transmitting messages
 
-// Main message patterns for "on" and "off" states
+// Original on message
 byte message[] = { 0x7D, 0x14, 0x7D, 0x14 };
 
 // Array of ending bytes used to terminate messages
