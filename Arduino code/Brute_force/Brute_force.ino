@@ -7,7 +7,7 @@ byte message[] = { 0x7D, 0x14, 0x7D, 0x14 };
 byte ending_bytes[] = { 0x69, 0x78, 0x1E, 0x2D, 0x3C, 0x4B, 0x5A };
 int curent_end_byte = 0;  // Index to track the current ending byte in the sequence
 
-int message_repeats = 3;  // Number of times the message is repeated during transmission
+int message_repeats = 1;  // Number of times the message is repeated during transmission
 
 void setup() {
   pinMode(rx_pin, OUTPUT);
@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-  for (int byte1 = 0; byte1 <= 0xFF; byte1++) {  // First byte brute-force loop
+  for (int byte1 = 0; byte1 <= 0xFF; byte1++) {    // First byte brute-force loop
     for (int byte2 = 0; byte2 <= 0xFF; byte2++) {  // Second byte brute-force loop
       // Skip the known working message
       if (byte1 == 0x7D && byte2 == 0x14) {  // Do not try the known working one
@@ -36,7 +36,7 @@ void loop() {
 
       // Send the modified message
       send_message(rx_pin, message, sizeof(message), ending_bytes, sizeof(ending_bytes), curent_end_byte);
-      delay(100);  // Optional delay to avoid overwhelming the receiver
+      delay(10);  // Optional delay to avoid overwhelming the receiver
     }
   }
 }
@@ -81,23 +81,25 @@ void send_byte(int pin, byte data) {
 
 // Sends a complete message, consisting the warmup, payload, ending bytes and "warmdown"
 void send_message(int pin, byte* mainMessage, size_t mainSize, byte* endBytes, size_t endSize, int& currentEndIndex) {
-  for (int i = 0; i < message_repeats; i++) {
-    warmup(pin);  // Send warmup signal
+  for (int i =0; i< sizeof(ending_bytes; i++){ // Must try all ending bytes, as we do not know which one is correct
+    for (int i = 0; i < message_repeats; i++) {
+      warmup(pin);  // Send warmup signal
 
-    // Send main message bytes
-    for (size_t i = 0; i < mainSize; i++) {
-      send_byte(pin, mainMessage[i]);
+      // Send main message bytes
+      for (size_t i = 0; i < mainSize; i++) {
+        send_byte(pin, mainMessage[i]);
+      }
+
+      // Send the current ending byte
+      send_byte(pin, endBytes[currentEndIndex]);
+
+      // Update the current end byte index
+      currentEndIndex++;
+      if (currentEndIndex >= endSize) {
+        currentEndIndex = 0;
+      }
+      pulse(pin);  // Send warmdown signal
+      delayMicroseconds(11200);
     }
-
-    // Send the current ending byte
-    send_byte(pin, endBytes[currentEndIndex]);
-
-    // Update the current end byte index
-    currentEndIndex++;
-    if (currentEndIndex >= endSize) {
-      currentEndIndex = 0;
-    }
-    pulse(pin);  // Send warmdown signal
-    delayMicroseconds(11200);
   }
 }
