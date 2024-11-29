@@ -81,7 +81,7 @@ void send_byte(int pin, byte data) {
 
 // Sends a complete message, consisting the warmup, payload, ending bytes and "warmdown"
 void send_message(int pin, byte* mainMessage, size_t mainSize, byte* endBytes, size_t endSize, int& currentEndIndex) {
-  for (int i =0; i< sizeof(ending_bytes; i++){ // Must try all ending bytes, as we do not know which one is correct
+  for (int i =0; i< sizeof(ending_bytes); i++){ // Must try all ending bytes, as we do not know which one is correct
     for (int i = 0; i < message_repeats; i++) {
       warmup(pin);  // Send warmup signal
 
