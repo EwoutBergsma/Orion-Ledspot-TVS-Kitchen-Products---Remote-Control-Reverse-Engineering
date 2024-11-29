@@ -33,11 +33,6 @@ void warmup(int pin) {
   delayMicroseconds(4580);
 }
 
-// Sends an ending bit to complete the message
-void ending_bit(int pin) {
-  low_bit(pin);  // A "low bit" is used as the ending signal
-}
-
 // Generates a short pulse signal
 void pulse(int pin) {
   digitalWrite(pin, HIGH);
@@ -86,7 +81,7 @@ void send_message(int pin, byte* mainMessage, size_t mainSize, byte* endBytes, s
     if (currentEndIndex >= endSize) {
       currentEndIndex = 0;
     }
-    ending_bit(pin);  // Send warmdown signal
-    delayMicroseconds(9440);
+    pulse(pin);  // Send warmdown signal
+    delayMicroseconds(11200);
   }
 }
