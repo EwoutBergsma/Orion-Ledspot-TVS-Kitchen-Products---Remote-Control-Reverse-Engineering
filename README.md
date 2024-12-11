@@ -16,7 +16,7 @@ The goal of this project was to integrate the control of the lights in my Home A
 # Protocol
 
 The 433Mhz protocol sends:
-- 9 ms preamble pulse, followed by 4.6ms of silence
+- 9 ms warmup/preamble(?) pulse, followed by 4.6ms of silence
 - 5 bytes using [Pulse Position Modulation](https://triq.org/rtl_433/PULSE_FORMATS.html#ppm-%E2%80%94-pulse-position-modulation) with fixed pulse width
     - of which 4 bytes corresponding to the table below
     - last byte, in binary: `0 <3 counting bits> 1 <inverse of counting bits>`
