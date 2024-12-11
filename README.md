@@ -32,7 +32,25 @@ The 433Mhz protocol sends:
 
 # ESPHome
 
-TBA
+An effective way of integrating it into my Home Assistant home automation is by using ESPHome. To do so I hooked up an ESP32 to a [433Mhz transmitter](https://www.hackerstore.nl/Artikel/572). Then all what was needed was to write some yaml. The complete yaml file can be found in `kitchen-light-controller.yaml`. The part that is special for this project is:
+
+```
+remote_transmitter:
+  pin: 13
+  carrier_duty_percent: 100%
+
+button:
+  - platform: template
+    name: "Turn On"
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: [9000, -4580, 560, -1760, 560, -608, 560, -608, 560, -608, 560, -608, 560, -608, 560, -1760, 560, -608, 560, -1760, 560, -1760, 560, -1760, 560, -608, 560, -1760, 560, -608, 560, -1760, 560, -1760, 560, -1760, 560, -608, 560, -608, 560, -608, 560, -608, 560, -608, 560, -1760, 560, -608, 560, -1760, 560, -1760, 560, -1760, 560, -608, 560, -1760, 560, -608, 560, -1760, 560, -1760, 560, -1760, 560, -608, 560, -608, 560, -1760, 560, -608, 560, -1760, 560, -1760, 560, -608, 560]
+          repeat:
+            times: 3
+```
+The `remote_transmitter` initializes the transmitter. Then using the [transmit_raw](https://esphome.io/components/remote_transmitter.html#:~:text=remote_transmitter.transmit_raw%20Action) a code can be made, where positive numbers mean a sine wave at 433Mhz is transmitted for that amount in microsecond. Likewise a negative numbers means no sine signal is transmitted for that amount in microseconds. Using the Arduino code found in `Arduino_code/Remote_control_hack_poc/Remote_control_hack_poc.ino` I could proof that, as long as anything in the communication is different, the receiver will just take it, regardless whether the end byte was changed or not. Thus, ignoring the brightness controls and the next and previous buttons, I can always send the same last byte. Because, for all other buttons I don't care that a second message would be ignored. For example, a second lights off message will be ignored (regardless of who sent those messages), which is no problem, it can't be off twice.
+
+The original remote also repeats the message three times, so the same behaviour is implemented in our ESPHome alternative.
 
 # The Journey/Analysis
 
