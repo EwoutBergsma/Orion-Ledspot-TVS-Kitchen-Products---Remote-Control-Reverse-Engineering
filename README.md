@@ -1,9 +1,9 @@
 # Project
 In my new kitchen I received lights that can be controlled by a remote. Here are some pictures:
 
-|![Remote Front](/Images/Remote_front.png)Front of the remote|![Remote Back](/Images/Remote_back.png)Back of the remote|
-|-----------------------------------------|---------------------------------------|
-|TBA Front of the light|![Light Back](/Images/Light_back.png) Back of the light|
+|![Remote Front](/Images/Remote_front.png) Front of the remote|![Remote Back](/Images/Remote_back.png) Back of the remote|
+|-------------------------------------------------------------|----------------------------------------------------------|
+|TBA Front of the light                                       | ![Light Back](/Images/Light_back.png) Back of the light  |
 
 
 
