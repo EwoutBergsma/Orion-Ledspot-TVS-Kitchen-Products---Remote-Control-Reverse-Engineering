@@ -9,7 +9,9 @@ In my new kitchen I received lights that can be controlled by a remote. Here are
 
 I could not find an infrared LED on the remote, so my best guess was that it must be controlled via radio. However, the information on the labels (see pictures above) did not help me much. If an FCC ID is listed on the label you can find a lot of data online, [as explained by Michael Ossmann](https://greatscottgadgets.com/sdr/8/). But I had no such luck, neither did I find others that had worked on this specifically. So, I guess I have to do it then.
 
-My goal is to integrate the control of the lights in my Home Assistant user interface. Preferably using an ESPHome device as a secondary remote.
+The goal of this project was to integrate the control of the lights in my Home Assistant user interface, using an ESPHome device as a secondary remote:
+
+![Demo](/Images/result.gif)
 
 # Protocol
 
